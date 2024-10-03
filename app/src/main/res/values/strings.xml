@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">AndroidLabs</string>
-    <string name="toast_message">Label has been updated</string>
-    <string name="flag_button_description">Flag Button</string>
+    <string name="app_name">MyApp</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="next">Next</string>
+    <string name="welcome">Welcome!</string>
+    <string name="thank_you">Thank You</string>
+    <string name="dont_call_me_that">Dont call me that</string>
 </resources>
