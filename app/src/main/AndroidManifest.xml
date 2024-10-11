@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.androidlabs"> <!-- Ensure the correct package name -->
 
     <application
         android:allowBackup="true"
@@ -12,15 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidLabs"
         tools:targetApi="31">
-        <activity
-            android:name=".NameActivity"
-            android:exported="false" />
+
+        <!-- MainActivity is the launcher activity -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"> <!-- Set to true so it can be launched -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
