@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"  <!-- Add this line -->
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+<ImageView
+android:id="@+id/catImageView"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:scaleType="fitCenter" />
+
+<ProgressBar
+android:id="@+id/progressBar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+android:indeterminate="false"
+android:max="100"
+android:visibility="visible"/>
+    </RelativeLayout>
