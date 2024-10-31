@@ -1,9 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme with Material3 styling and no ActionBar -->
     <style name="Base.Theme.AndroidLabs" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+        <!-- Customize your light theme here -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.AndroidLabs" parent="Base.Theme.AndroidLabs" />
+    <!-- Main application theme without ActionBar -->
+    <style name="Theme.AndroidLabs" parent="Base.Theme.AndroidLabs">
+        <!-- Further customizations for the application theme -->
+    </style>
+
+    <!-- Alternative theme with ActionBar included -->
+    <style name="Theme.AndroidLabs.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your ActionBar theme here -->
+    </style>
 </resources>
+
