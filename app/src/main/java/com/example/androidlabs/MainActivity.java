@@ -1,72 +1,69 @@
 package com.example.androidlabs;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ListView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
-
-    private CharacterAdapter characterAdapter;
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listView = findViewById(R.id.characterListView);
-        characterAdapter = new CharacterAdapter(this, new ArrayList<>());
-        listView.setAdapter(characterAdapter);
+        Toolbar toolbar = findViewById(R.id.toolBar);
 
-        new FetchCharactersTask().execute();
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
-    // FetchCharactersTask to retrieve character data
-    private class FetchCharactersTask extends AsyncTask<Void, Void, List<Character>> {
-        @Override
-        protected List<Character> doInBackground(Void... voids) {
-            List<Character> characters = new ArrayList<>();
-            try {
-                URL url = new URL("https://swapi.dev/api/people/?format=json");
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                InputStream in = urlConnection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
-                StringBuilder responseText = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    responseText.append(line);
-                }
-
-                JSONArray results = new JSONObject(responseText.toString()).getJSONArray("results");
-                for (int i = 0; i < results.length(); i++) {
-                    JSONObject character = results.getJSONObject(i);
-                    characters.add(new Character(
-                            character.getString("name"),
-                            character.getString("height"),
-                            character.getString("mass"),
-                            character.getString("birth_year")
-                    ));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return characters;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.choice1) {
+            Toast.makeText(this, "You clicked on item 1", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.choice2) {
+            Toast.makeText(this, "You clicked on item 2", Toast.LENGTH_SHORT).show();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
+    }
 
-        @Override
-        protected void onPostExecute(List<Character> characters) {
-            // Update the ListView with character data
-            characterAdapter.updateCharacters(characters);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.nav_home) {
+            startActivity(new Intent(this, MainActivity.class));
+        } else if (id == R.id.nav_dad_joke) {
+            startActivity(new Intent(this, DadJokeActivity.class));
+        } else if (id == R.id.nav_exit) {
+            finishAffinity();
         }
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

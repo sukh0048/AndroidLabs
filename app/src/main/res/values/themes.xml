@@ -14,5 +14,10 @@
     <style name="Theme.AndroidLabs.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your ActionBar theme here -->
     </style>
-</resources>
 
+    <!-- Items related to window styling should be placed inside the correct style -->
+    <style name="CustomActionBarStyle">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

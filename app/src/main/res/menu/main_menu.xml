@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Make sure icon1 and icon2 are present in res/drawable folder or comment out the android:icon lines for now -->
+    <item
+        android:id="@+id/choice1"
+        android:title="Choice 1"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/choice2"
+        android:title="Choice 2"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/overflow_option"
+        android:title="Overflow Option"
+        app:showAsAction="never" />
+</menu>
